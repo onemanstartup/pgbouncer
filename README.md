@@ -1,3 +1,9 @@
+## Acknowledgments
+
+This repo is a fork of https://github.com/brainsam/pgbouncer
+
+I would like to thank @brainsam for its work that I'm reusing here.
+
 ## Synopsis
 
 **pgbouncer** is a popular, small connection pooler for Postgresql. This is yet another docker image with pgbouncer, based on alpine.
@@ -10,20 +16,20 @@ $ docker run -d \
  -e DB_HOST=postgresql.example.com \
  -e DB_USER=admin \
  -e DB_PASSWORD=mypassword \
- brainsam/pgbouncer:latest
+ guizmaii/pgbouncer:v1.7.2
 ```
 Or You can mount config file into docker container:
 ```bash
 $ docker run -d \
  --name pgbouncer \
  -v pgbouncer-config-file:/etc/pgbouncer/pgbouncer.ini \
- brainsam/pgbouncer:latest
+ guizmaii/pgbouncer:v1.7.2
 ```
 
 ## Installation
 
 ```bash
-$ docker pull brainsam/pgbouncer:latest
+$ docker pull guizmaii/pgbouncer:v1.7.2
 ```
 ## Configuration
 
