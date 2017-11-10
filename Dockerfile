@@ -2,7 +2,10 @@ FROM alpine:3.6
 
 MAINTAINER jules.ivanic@gmail.com
 
-RUN apk --update add git build-base automake libtool m4 autoconf libevent-dev openssl-dev c-ares-dev  && \
+RUN apk update && \
+    apk upgrade && \
+    apk --update add git build-base automake libtool m4 autoconf libevent-dev openssl-dev c-ares-dev \
+        bash bash-doc bash-completion util-linux pciutils usbutils coreutils binutils findutils grep  && \
 	git clone https://github.com/pgbouncer/pgbouncer.git && \
 	cd pgbouncer                    && \
 	git checkout pgbouncer_1_7_2    && \
