@@ -6,6 +6,12 @@ PG_LOG=/var/log/pgbouncer
 PG_CONFIG_DIR=/etc/pgbouncer
 PG_USER=postgres
 
+# Come from here:
+#   https://stackoverflow.com/a/19347380/2431728
+#
+ESCAPED_DB_USER=${DB_USER//[$'\t\r\n']}
+ESCAPED_DB_PASSWORD=${DB_PASSWORD//[$'\t\r\n']}
+
 if [ ! -f ${PG_CONFIG_DIR}/pgbouncer.ini ]; then
   echo "create pgbouncer config in ${PG_CONFIG_DIR}"
   mkdir -p ${PG_CONFIG_DIR}
@@ -17,7 +23,7 @@ if [ ! -f ${PG_CONFIG_DIR}/pgbouncer.ini ]; then
 # Lines starting with “;” or “#” are taken as comments and ignored.
 # The characters “;” and “#” are not recognized when they appear later in the line.
 [databases]
-* = host=${DB_HOST:?"Setup pgbouncer config error! You must set DB_HOST env"} port=${DB_PORT:-5432} user=${DB_USER:-postgres} ${DB_PASSWORD:+password=${DB_PASSWORD}}
+* = host=${DB_HOST:?"Setup pgbouncer config error! You must set DB_HOST env"} port=${DB_PORT:-5432} user=${ESCAPED_DB_USER:-postgres} ${ESCAPED_DB_PASSWORD:+password=${DB_PASSWORD}}
 
 [pgbouncer]
 # Generic settings
