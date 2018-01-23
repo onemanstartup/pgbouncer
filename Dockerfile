@@ -8,7 +8,7 @@ RUN apk update && \
         bash bash-doc bash-completion util-linux pciutils usbutils coreutils binutils findutils grep  && \
 	git clone https://github.com/pgbouncer/pgbouncer.git && \
 	cd pgbouncer                    && \
-	git checkout pgbouncer_1_7_2    && \
+	git checkout pgbouncer_1_8_1    && \
 	git submodule init              && \
 	git submodule update            && \
 	./autogen.sh                    && \

@@ -6,6 +6,7 @@ More infos about this file : http://keepachangelog.com/
 
 ## [Unreleased] - no_due_date
 
+- **Update PgBouncer from v1.7.2 to v1.8.1**
 - **Update Alpine Linux from v3.6 to v3.7**
 - **Init CHANGELOG**
 
