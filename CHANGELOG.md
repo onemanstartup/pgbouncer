@@ -6,6 +6,7 @@ More infos about this file : http://keepachangelog.com/
 
 ## [Unreleased] - no_due_date
 
+- **Update Alpine Linux from v3.6 to v3.7**
 - **Init CHANGELOG**
 
 ## [v1.7.2] - 2017-02-15
