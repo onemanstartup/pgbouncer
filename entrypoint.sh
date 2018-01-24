@@ -23,7 +23,7 @@ if [ ! -f ${PG_CONFIG_DIR}/pgbouncer.ini ]; then
 # Lines starting with “;” or “#” are taken as comments and ignored.
 # The characters “;” and “#” are not recognized when they appear later in the line.
 [databases]
-* = host=${DB_HOST:?"Setup pgbouncer config error! You must set DB_HOST env"} port=${DB_PORT:-5432} user=${ESCAPED_DB_USER:-postgres} ${ESCAPED_DB_PASSWORD:+password=${DB_PASSWORD}}
+* = host=${DB_HOST:?"Setup pgbouncer config error! You must set DB_HOST env"} port=${DB_PORT:-5432} user=${ESCAPED_DB_USER:-postgres} ${ESCAPED_DB_PASSWORD:+password=${ESCAPED_DB_PASSWORD}}
 
 [pgbouncer]
 # Generic settings
@@ -48,7 +48,7 @@ ${RESERVE_POOL_TIMEOUT:+reserve_pool_timeout = ${RESERVE_POOL_TIMEOUT}\n}\
 ${MAX_DB_CONNECTIONS:+max_db_connections = ${MAX_DB_CONNECTIONS}\n}\
 ${MAX_USER_CONNECTIONS:+max_user_connections = ${MAX_USER_CONNECTIONS}\n}\
 ${SERVER_ROUND_ROBIN:+server_round_robin = ${SERVER_ROUND_ROBIN}\n}\
-ignore_startup_parameters = ${IGNORE_STARTUP_PARAMETERS:-extra_float_digits}
+${IGNORE_STARTUP_PARAMETERS:+ignore_startup_parameters = ${IGNORE_STARTUP_PARAMETERS}\n}\
 ${DISABLE_PQEXEC:+disable_pqexec = ${DISABLE_PQEXEC}\n}\
 ${APPLICATION_NAME_ADD_HOST:+application_name_add_host = ${APPLICATION_NAME_ADD_HOST}\n}\
 ${CONFFILE:+conffile = ${CONFFILE}\n}\

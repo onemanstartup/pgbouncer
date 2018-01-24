@@ -6,6 +6,9 @@ More infos about this file : http://keepachangelog.com/
 
 ## [Unreleased] - no_due_date
 
+- **By default, do not pass any `ignore_startup_parameters` param**
+- **Fix password passed**
+
 ## [v1.8.1] - 2018-01-23
 
 - **Update PgBouncer from v1.7.2 to v1.8.1**
