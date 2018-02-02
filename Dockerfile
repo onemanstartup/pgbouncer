@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-MAINTAINER jules.ivanic@gmail.com
+MAINTAINER onemanstartup@gmail.com
 
 RUN apk update && \
     apk upgrade && \

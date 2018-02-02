@@ -4,7 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 More infos about this file : http://keepachangelog.com/
 
-## [Unreleased] - no_due_date
+## [v.1.8.2] - 2018-01-29
+
+- added support for docker secrets
 
 ## [v1.8.1] - 2018-01-23
 

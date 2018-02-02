@@ -1,10 +1,40 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 # Here are some parameters. See all on
 # https://pgbouncer.github.io/config.html
 
 PG_LOG=/var/log/pgbouncer
 PG_CONFIG_DIR=/etc/pgbouncer
 PG_USER=postgres
+
+
+#!/usr/bin/env bash
+
+set -e
+
+# usage: file_env VAR [DEFAULT]
+#    ie: file_env 'XYZ_DB_PASSWORD' 'example'
+# (will allow for "$XYZ_DB_PASSWORD_FILE" to fill in the value of
+#  "$XYZ_DB_PASSWORD" from a file, especially for Docker's secrets feature)
+file_env() {
+	local var="$1"
+	local fileVar="${var}_FILE"
+	local def="${2:-}"
+	if [ "${!var:-}" ] && [ "${!fileVar:-}" ]; then
+		echo >&2 "error: both $var and $fileVar are set (but are exclusive)"
+		exit 1
+	fi
+	local val="$def"
+	if [ "${!var:-}" ]; then
+		val="${!var}"
+	elif [ "${!fileVar:-}" ]; then
+		val="$(< "${!fileVar}")"
+	fi
+	export "$var"="$val"
+	unset "$fileVar"
+}
+
+file_env 'DB_PASSWORD'
 
 # Come from here:
 #   https://stackoverflow.com/a/19347380/2431728
@@ -120,6 +150,5 @@ mkdir -p ${PG_LOG}
 chmod -R 755 ${PG_LOG}
 chown -R ${PG_USER}:${PG_USER} ${PG_LOG}
 
-cat ${PG_CONFIG_DIR}/pgbouncer.ini
 echo "Starting pgbouncer..."
 exec pgbouncer -u ${PG_USER} ${PG_CONFIG_DIR}/pgbouncer.ini
